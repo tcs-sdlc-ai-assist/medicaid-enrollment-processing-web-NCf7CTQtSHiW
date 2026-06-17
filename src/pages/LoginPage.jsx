@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { USER_ROLES } from '../utils/constants';
 import { AlertMessage } from '../components/common/AlertMessage';
@@ -194,8 +194,7 @@ export function LoginPage() {
 
   // If already authenticated, redirect to dashboard
   if (isAuthenticated) {
-    navigate('/');
-    return null;
+    return <Navigate to="/" replace />;
   }
 
   const appTitle = import.meta.env.VITE_APP_TITLE || 'Medicaid Enrollment Portal';

@@ -1,4 +1,5 @@
 import { createContext, useContext, useCallback, useMemo } from 'react';
+import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuthStore } from '../stores/authStore';
 
@@ -114,18 +115,7 @@ export function ProtectedRoute({ children, permission, fallback }) {
       return <>{fallback}</>;
     }
 
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] p-8">
-        <div className="bg-warning-50 border border-warning-200 rounded-lg p-6 max-w-md text-center">
-          <h2 className="text-lg font-semibold text-warning-800 mb-2">
-            Authentication Required
-          </h2>
-          <p className="text-warning-700 text-sm">
-            Please log in to access this page.
-          </p>
-        </div>
-      </div>
-    );
+    return <Navigate to="/login" replace />;
   }
 
   if (permission && !hasPermission(permission)) {
